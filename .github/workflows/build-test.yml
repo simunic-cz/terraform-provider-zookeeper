@@ -15,6 +15,7 @@ on:
       - 'CHANGELOG.md'
       - '.github/CONTRIBUTING.md'
       - '.github/SUPPORT.md'
+  workflow_dispatch:
 
 permissions:
   contents: read
