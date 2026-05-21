@@ -1,3 +1,19 @@
+## UNRELEASED (TBD)
+
+NEW FEATURES:
+
+* ... WIP...
+
+IMPROVEMENTS:
+
+* Enabling CI testing for versions `1.15` of Terraform
+
+NOTES:
+
+* Updated repository Go version to `1.26.3`
+  * See the [Go `1.26.3` milestone](https://github.com/golang/go/issues?q=milestone%3AGo1.26.3)
+* Updated all dependencies to latest
+
 ## 1.3.2 (Mar 19, 2026)
 
 NOTES:
