@@ -45,7 +45,7 @@ func NewTLSConfig(
 			return nil, err
 		}
 
-		tlsConfig.Config.RootCAs = certPool
+		tlsConfig.RootCAs = certPool
 	}
 
 	if certPath != "" || keyPath != "" {
@@ -54,7 +54,7 @@ func NewTLSConfig(
 			return nil, err
 		}
 
-		tlsConfig.Config.Certificates = []tls.Certificate{certificate}
+		tlsConfig.Certificates = []tls.Certificate{certificate}
 	}
 
 	return tlsConfig, nil
@@ -63,7 +63,7 @@ func NewTLSConfig(
 func (tlsConfig *TLSConfig) readCACert(rootCertPath string) (*x509.CertPool, error) {
 	certPool := x509.NewCertPool()
 
-	pemCert, err := os.ReadFile(rootCertPath)
+	pemCert, err := os.ReadFile(rootCertPath) //nolint:gosec
 	if err != nil {
 		return nil, fmt.Errorf("unable to read TLS root CA cert file: %w", err)
 	}
@@ -80,12 +80,12 @@ func (tlsConfig *TLSConfig) readClientKeyPair(certPath, keyPath string) (tls.Cer
 		return tls.Certificate{}, ErrTLSCertKeyBothOrNone
 	}
 
-	pemCert, err := os.ReadFile(certPath)
+	pemCert, err := os.ReadFile(certPath) //nolint:gosec
 	if err != nil {
 		return tls.Certificate{}, fmt.Errorf("unable to read TLS client cert file: %w", err)
 	}
 
-	pemKey, err := os.ReadFile(keyPath)
+	pemKey, err := os.ReadFile(keyPath) //nolint:gosec
 	if err != nil {
 		return tls.Certificate{}, fmt.Errorf("unable to read TLS client key file: %w", err)
 	}
